@@ -1,0 +1,6 @@
+in REFM_CASE_TYPE codes are present in CASE_TYPE_CODE column and description in column CASE_TYPE_DESC
+  E      IV-E FOSTER CARE
+  M      MEDICAID
+  D      NON-IV-D
+  N      NON-TANF
+  A      TANF

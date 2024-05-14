@@ -1,0 +1,4 @@
+in REFM_GENDER codes are present in GENDER_CODE column and description in column GENDER_DESC
+  F      FEMALE
+  M      MALE
+  O      OTHER

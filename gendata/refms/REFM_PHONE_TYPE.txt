@@ -1,0 +1,3 @@
+in REFM_PHONE_TYPE codes are present in PHONE_TYPE_CODE column and description in column PHONE_TYPE_DESC
+  P      PRIMARY
+  S      SECONDARY

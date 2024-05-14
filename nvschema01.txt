@@ -1,0 +1,178 @@
+-Table: case_detail - contains information on a Case in the system
+  - case_id: int (Primary Key)
+  - case_type_code: char, (Foreign Key to refm_case_type.case_type_code) and Case Type description in column case_type_desc
+		E	IV-E FOSTER CARE / IV E / IVE
+		M	MEDICAID
+		D	NON-IV-D / IV D / IVD
+		N	NON-TANF
+		A	TANF
+  - case_status_code: char, (Foreign Key to refm_case_status.case_status_code) and Case Status description column in case_status_desc
+		C   CLOSED
+		O   OPEN
+ - case_igv_type_code: char, (Foreign Key to refm_case_igv_type.case_igv_type_code) and Inter-Govermental Cases description column in case_igv_type_desc 
+		C	INITIATING INTERNATIONAL
+		I	INITIATING STATE
+		T	INITIATING TRIBAL
+		N	INSTATE
+		Y	RESPONDING INTERNATIONAL
+		R	RESPONDING STATE
+		S	RESPONDING TRIBAL
+ - case_category_type_code: char, (Foreign Key to refm_case_category_type.case_category_type_code) and Case Category description in column case_category_type_desc
+		FD	FORMER IV-D
+		FS	FULL SERVICES
+		LS	LIMITED SERVICE REQUEST
+		MO	MEDICAID
+		MS	MEDICAL ONLY
+		PP	PAYMENT PROCESSING ONLY 
+  - assistance_type_code: char, (Foreign Key to refm_assistance_type.assistance_type_code) and Assistance type description in column assistance_type_desc
+		CA	CURRENT ASSISTANCE
+		FA	FORMER ASSISTANCE
+		NA	NEVER ASSISTANCE
+  - assigned_office_code: char, (Foreign Key to office.office_code) and office name in column office_name
+  - opened_date: date, date on which case is opened
+- Table: person
+  - person_id: int (Primary Key)
+  - first_name: string
+  - last_name: string
+  - gender_code: char, (Foreign Key to refm_gender.gender_code) and Gender description in column gender_desc
+		F	FEMALE
+		M	MALE
+		O	OTHER
+  - birth_date: date 
+- Table: case_person - details of person related to the case
+  - case_id: int, seregate primary key as forgein key to table person
+  - person_id: int, seregate primary key as forgein key to table person
+  - case_party_role_code: char, (Foreign Key to refm_case_party_role.case_party_role_code) and Case Party Role description in column case_party_role_desc
+		A   NON-CUSTODIAL PARENT
+		C   CUSTODIAL PARTY
+		D   DEPENDENT
+		P   ALLEGED PARENT 
+- Table: person_address - contains the list of address of a person
+  - person_address_id: int (Primary Key)
+  - person_id: int, (Foreign Key to (Foreign Key to refm_case_party_role.person_id)
+  - addr_id: int, (Foreign Key to (Foreign Key to address.addr_id) where address tables has fields to address
+  - address_type_code: char, (Foreign Key to refm_address_type.address_type_code) and Address Type description in column address_type_desc
+		A   ALTERNATIVE PAYMENT
+		D   DSS STATE OFFICE
+		F   FRIEND/RELATIVE
+		M   MAILING
+		O   OWNER/NON RESIDENT
+		R   RESIDENTIAL
+		S   SAFETY ADDRESS
+  - address_status_code: char, (Foreign Key to refm_verify_status.verify_status_code) Address Status description in column verify_status_desc
+		B   CONFIRMED BAD
+		N   NO ACTION TAKEN
+		P   VERIFICATION PENDING
+		Y   CONFIRMED GOOD
+  - address_source_code: char, (Foreign Key to refm_country.address_source_code) and Address Source description in column address_source_desc
+		AGO ATTORNEY GENERAL'S OFFICE
+		BOP FEDERAL BUREAU OF PRISONS
+		COC CLERK OF COURT
+		CRA CREDIT REPORTING AGENCY
+		CSL CHILD SUPPORT LIEN NETWORK
+		CSP DWSS CUSTOMER WEBSITE
+		CST CUSTODIAL PARTY
+		CSW CASE WORKER
+		DCF DEPARTMENT OF CHILDREN AND FAMILIES
+		DMV DEPARTMENT OF MOTOR VEHICLES
+		DPH DEPARTMENT OF PUBLIC HEALTH
+		EDI EDISON
+		EEP DEPARTMENT OF ENERGY AND ENVIRONMENTAL PROTECTION
+		EMP EMPLOYER
+		EMR EMPLOYER PORTAL
+		FA1 FCR LOCATE RESPONSE RECORD(FPLS) - DOD
+		FA2 FCR LOCATE RESPONSE RECORD(FPLS) - FBI
+		FA3 FCR LOCATE RESPONSE RECORD(FPLS) - NSA
+		FAM SNAP, TFA, MEDICAID, AND EMPLOYMENT TRAINING PROGRAMS
+		FC1 FCR LOCATE RESPONSE RECORD(FPLS) - IRS
+		FCR FEDERAL CASE REGISTRY
+		FE4 FCR STATE VERIFICATION EXCHANGE SYSTEM (SVES) - TITLE II
+		FE5 FCR STATE VERIFICATION EXCHANGE SYSTEM (SVES) - TITLE XVI
+		FE7 FCR STATE VERIFICATION EXCHANGE SYSTEM (SVES) - TITLE II PENDING CLAIM
+		FED FEDERAL AGENCY
+		FF1 FCR LOCATE RESPONSE RECORD(FPLS) - VA
+		FIM FCR INSURANCE MATCH
+		FPL FEDERAL PARENT LOCATOR SERVICE
+		H97 FCR NATIONAL DIRECTORY OF NEW HIRE (NDNH) - UI
+		H99 FCR NATIONAL DIRECTORY OF NEW HIRE (NDNH) - NH
+		INT INTERNET
+		IRS INTERNAL REVENUE SERVICE
+		IVA IVA REFERRAL - CP ADDRESS
+		IVC IVA REFERRAL - CP
+		IVN IVA REFERRAL - NCP
+		LAW LAW ENFORCEMENT
+		LEX LEXIS-NEXIS
+		LOT LOTTERY
+		LTX LOCAL PROPERTY TAX ASSESSOR
+		MCO MARSHAL/CAPIAS OFFICER
+		MSF MULTI-STATE FINANCIAL INSTITUTION DATA MATCH
+		NCA NATIONAL CHANGE OF ADDRESS (NCOA)
+		NCP NON-CUSTODIAL PARENT
+		NDH NATIONAL DIRECTORY OF NEW HIRES
+		NPR NATIONAL PERSONNEL RECORD CENTER
+		NWP NEWSPAPER
+		OSA INTERGOVERNMENTAL IV-D AGENCY
+		OTH OTHER PARTY
+		PFL PAID FAMILY LEAVE
+		PRO PROBATION
+		SAI STATE AGENCY
+		SCR STATE CASE REGISTRY
+		SDC STATE DEPARTMENT OF CORRECTIONS
+		SDN DEPARTMENT OF LABOR - SDNH
+		SDU STATE DISBURSEMENT UNIT
+		SOP SERVICE OF PROCESS
+		SOS SECRETARY OF STATE
+		SPL STATE PARENT LOCATOR SERVICES
+		SSA SOCIAL SECURITY ADMINISTRATION
+		UCI DEPARTMENT OF LABOR - UCI
+		UNI UNION
+		USP UNITED STATES POSTAL SERVICE
+  - end_date: date , valid records will have date 12/31/9999
+- Table: address - contains the list of address available
+  - addr_id: int (Primary Key)
+  - line1_addr, varchar, contains line1 address
+  - line2_addr, varchar, contains line2 address
+  - post_code_id: int (Foreign Key to post_code.post_code_id) 
+  - city_id: int (Foreign Key to city.city_id) name in city_name 
+- Table: city - contains state_code, country_code and city_name
+  - city_id: int (Primary Key)
+  - state_code: varchar, (Foreign Key to address_state.state_code) name in state_name 
+  - city_name: varchar 
+- Table: post_code - contains postal codes
+  - post_code_id: int (Primary Key)
+  - post_code: varchar, postal code 
+- Table: intergovernmental_case_detail - contains other state case ids
+  - intergovernmental_id: int (Primary Key)
+  - case_id: int , (Foreign Key to case_detail.case_id )
+  - other_state_case_idc: varchar , OOS Case ID
+- Table: person_welfare - contains welafre related to person and case
+  - welfare_id: int (Primary Key)
+  - case_id: int , (Foreign Key to case_detail.case_id )
+  - person_id: int , (Foreign Key to person.person_id )
+  - medicaid_person_numb: int , Medical ID
+  - nomads_ici_numb: int, IV-A Case ID
+- Table: person_eml_detail
+  - person_eml_id: int (Primary Key)
+  - person_id: int , (Foreign Key to person.person_id )
+  - eml_type_code, (Foreign Key to refm_email_type.email_type_code) and Email Type description in column email_type_desc 
+		P	PRIMARY
+		S	SECONDARY
+  - person_eml: varchar, e-mail of a person
+- Table: person_phone_detail
+  - person_phone_id: int (Primary Key)
+  - person_id: int , (Foreign Key to person.person_id )
+  - phone_type_code, (Foreign Key to refm_phone_type.phone_type_code) and Phone Type description in column phone_type_desc 
+		P	PRIMARY
+		S	SECONDARY
+  - phone_numb: varchar, phone number of a person
+- Table: user_detail, contains worker or User details
+  - user_id: int (Primary Key)
+  - user_name: varchar , worker login id
+  - first_name: varchar
+  - last_name: varchar 
+- Table: case_user, contains the workers or users assigned to a case
+  - case_user_id: int (Primary Key)
+  - case_id: int, (Foreign Key to case_detail.case_id)
+  - user_id: int, (Foreign Key to user_detail.user_id)
+  - end_date: date , valid records will have date 12/31/9999
+  

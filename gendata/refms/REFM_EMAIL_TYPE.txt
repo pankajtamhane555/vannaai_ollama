@@ -1,0 +1,3 @@
+in REFM_EMAIL_TYPE codes are present in EMAIL_TYPE_CODE column and description in column EMAIL_TYPE_DESC
+  P      PRIMARY
+  S      SECONDARY

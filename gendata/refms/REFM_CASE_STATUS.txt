@@ -1,0 +1,3 @@
+in REFM_CASE_STATUS codes are present in CASE_STATUS_CODE column and description in column CASE_STATUS_DESC
+  C      CLOSED
+  O      OPEN

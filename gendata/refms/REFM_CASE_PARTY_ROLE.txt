@@ -1,0 +1,6 @@
+in REFM_CASE_PARTY_ROLE codes are present in CASE_PARTY_ROLE_CODE column and description in column CASE_PARTY_ROLE_DESC
+  G      ALTERNATE PAYEE
+  D      CHILD
+  C      CUSTODIAL PARTY
+  A      NON-CUSTODIAL PARENT
+  P      PUTATIVE FATHER

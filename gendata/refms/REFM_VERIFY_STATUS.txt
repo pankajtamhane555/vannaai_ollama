@@ -1,0 +1,5 @@
+in REFM_VERIFY_STATUS codes are present in VERIFY_STATUS_CODE column and description in column VERIFY_STATUS_DESC
+  B      CONFIRMED BAD
+  Y      CONFIRMED GOOD
+  N      NO ACTION TAKEN
+  P      VERIFICATION PENDING
